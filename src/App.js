@@ -6,23 +6,15 @@ import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInPage";
 import UserProfilePage from "./pages/UserProfilePage";
 
-
-
 function App() {
   return (
     <Router>
       <div className="App">
         <Header />
         <Routes>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route path="/signin">
-            <SignInPage />
-          </Route>
-          <Route path="/profile">
-            <UserProfilePage />
-          </Route>
+          <Route path="/" element={ <HomePage /> } />
+          <Route path="/signin" element={ <SignInPage /> } />
+          <Route path="/profile" element={ <UserProfilePage /> } />
         </Routes>
         <Footer />
       </div>
