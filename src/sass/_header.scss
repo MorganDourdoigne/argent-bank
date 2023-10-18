@@ -1,8 +1,5 @@
 
-.bg-dark {
-    background-color: #12002b;
-  }
-  
+
   .sr-only {
     border: 0 !important;
     clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -38,6 +35,11 @@
     margin-right: 0.5rem;
   }
   
+  .header {
+    color: #fff;
+    margin-bottom: 2rem;
+  }
+  
   .main-nav-item:hover {
     text-decoration: underline;
   }
@@ -51,4 +53,12 @@
     max-width: 100%;
     width: 200px;
   }
+
+
+
+
+.sign-in-icon {
+  font-size: 5rem;
+}
+
   

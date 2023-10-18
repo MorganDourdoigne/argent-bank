@@ -37,6 +37,53 @@
 
 .bg-dark {
   background-color: #12002b;
+  padding-bottom: 170px;
+  padding-top: 1px;
+}
+
+.input-remember {
+  display: flex;
+}
+
+.input-remember label {
+  margin-left: 0.25rem;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.input-wrapper label {
+  font-weight: bold;
+}
+
+.input-wrapper input {
+  padding: 5px;
+  font-size: 1.2rem;
+}
+
+.sign-in-button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+}
+
+.sign-in-content {
+  box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
 }
 
 .sr-only {
@@ -74,6 +121,11 @@
   margin-right: 0.5rem;
 }
 
+.header {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
 .main-nav-item:hover {
   text-decoration: underline;
 }
@@ -86,6 +138,10 @@
 .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
+}
+
+.sign-in-icon {
+  font-size: 5rem;
 }
 
 /** Responsive **/
@@ -116,6 +172,17 @@
 @media (min-width: 920px) {
   .features {
     flex-direction: row;
+  }
+}
+@media (min-width: 720px) {
+  .account {
+    flex-direction: row;
+  }
+  .account-content-wrapper.cta {
+    flex: 0;
+  }
+  .transaction-button {
+    width: 200px;
   }
 }
 .footer {
@@ -164,6 +231,7 @@ body {
   min-height: 100vh;
 }
 
-.main {
-  flex: 1;
+.fa-user-circle {
+  font-size: 1rem;
+  margin-right: 5px;
 }/*# sourceMappingURL=style.css.map */

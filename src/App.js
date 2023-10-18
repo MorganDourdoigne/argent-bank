@@ -13,7 +13,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={ <HomePage /> } />
-          <Route path="/signin" element={ <SignInPage /> } />
+          <Route path="/sign-in" element={ <SignInPage /> } />
           <Route path="/profile" element={ <UserProfilePage /> } />
         </Routes>
         <Footer />
