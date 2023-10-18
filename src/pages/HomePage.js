@@ -1,5 +1,8 @@
 import React from 'react';
 import iconChat from '../img/icon-chat.png';
+import moneyIcon from '../img/icon-money.png';
+import securitydIcon from '../img/icon-security.png';
+import Feature from '../components/Feature';
 
 function HomePage() {
   return (
@@ -15,14 +18,32 @@ function HomePage() {
       </div>
       <section className="features">
         <h2 className="sr-only">Features</h2>
-        <div className="feature-item">
-          <img src={iconChat} alt="Chat Icon" className="feature-icon" />
-          <h3 className="feature-item-title">You are our #1 priority</h3>
-          <p>
-            Need to talk to a representative? You can get in touch through our
-            24/7 chat or through a phone call in less than 5 minutes.
-          </p>
-        </div>
+
+        <Feature 
+  imgSrc={iconChat} 
+  altText="Chat Icon" 
+  title="You are our #1 priority"
+>
+  Need to talk to a representative? You can get in touch through our
+  24/7 chat or through a phone call in less than 5 minutes.
+</Feature>
+
+<Feature 
+  imgSrc={moneyIcon}
+  altText="Money Icon" 
+  title="More savings means higher rates"
+>
+The more you save with us, the higher your interest rate will be!
+</Feature>
+
+<Feature 
+  imgSrc={securitydIcon}
+  altText="Shield Icon" 
+  title="Security you can trust"
+>
+We use top of the line encryption to make 
+sure your data and money is always safe.
+</Feature>
             </section>
     </main>
   );
