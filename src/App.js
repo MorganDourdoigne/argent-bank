@@ -12,15 +12,14 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" element={ <HomePage /> } />
-          <Route path="/sign-in" element={ <SignInPage /> } />
-          <Route path="/profile" element={ <UserProfilePage /> } />
-        </Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/sign-in" element={<SignInPage />} />
+          <Route path="/profile" element={<UserProfilePage />} />
+                  </Routes>
         <Footer />
       </div>
     </Router>
-  ); 
+  );
 }
 
 export default App;
-

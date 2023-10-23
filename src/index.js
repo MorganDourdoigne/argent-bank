@@ -4,10 +4,12 @@ import "./sass/style.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+//bibliothèque redux
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
 
+// Configuration du store Redux
 const store = configureStore({
   reducer: rootReducer,
   devTools: true,

@@ -1,8 +1,26 @@
-import { Link } from "react-router-dom";
-import React from 'react';
-import logoArgentBank from '../img/argentBankLogo.png';
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import logoArgentBank from "../img/argentBankLogo.png";
 
 function Header() {
+  // récupération du token du state Redux
+  const token = useSelector((state) => state.auth.token);
+  // récupération dispatch () pour dispatcher des actions
+  const dispatch = useDispatch();
+  //récupération navigate() pour naviguer vers d'autres routes
+  const navigate = useNavigate();
+  // handleSignOut() est appelée lors du clic sur "Sign Out"
+  const handleSignOut = () => {
+    // Suppression du token dans le localStorage et sessionStorage
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+    // dispatche une action 'USER_LOGOUT' pour mettre à jour le state Redux
+    dispatch({ type: "USER_LOGOUT" });
+    // redirige vers la page de connexion
+    navigate("/sign-in");
+  };
+
   return (
     <header>
       <nav className="main-nav">
@@ -15,15 +33,25 @@ function Header() {
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
         <div>
-          <Link className="main-nav-item" to="/sign-in">
-            <i className="fa fa-user-circle"></i>
-            Sign In
-            
-          </Link>
+          {token ? (
+            <Link
+              className="main-nav-item"
+              to="/sign-in"
+              onClick={handleSignOut}
+            >
+              <i className="fa fa-user-circle"></i>
+              Sign Out
+            </Link>
+          ) : (
+            <Link className="main-nav-item" to="/sign-in">
+              <i className="fa fa-user-circle"></i>
+              Sign In
+            </Link>
+          )}
         </div>
       </nav>
     </header>
-  )
+  );
 }
 
 export default Header;

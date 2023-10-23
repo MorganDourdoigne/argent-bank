@@ -33,7 +33,12 @@ function SignInPage() {
         return response.json();
       })
       .then((data) => {
-        localStorage.setItem("token", data.body.token);
+   
+        if (rememberMe) {
+          localStorage.setItem("token", data.body.token);
+        } else {
+          sessionStorage.setItem("token", data.body.token);
+        }
         dispatch({ type: "USER_LOGIN", payload: data.body.token });
       })
       .catch((error) => {
