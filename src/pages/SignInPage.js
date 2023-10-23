@@ -16,7 +16,6 @@ function SignInPage() {
     }
   }, [token, navigate]);
   
-
   const handleSignIn = (event) => {
     event.preventDefault();
     fetch("http://localhost:3001/api/v1/user/login", {
