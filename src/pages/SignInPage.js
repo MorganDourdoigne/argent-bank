@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-
 function SignInPage() {
+  const [errorMessage, setErrorMessage] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -13,10 +13,10 @@ function SignInPage() {
 
   useEffect(() => {
     if (token) {
-      navigate('/profile');
+      navigate("/profile");
     }
   }, [token, navigate]);
-  
+
   const handleSignIn = (event) => {
     event.preventDefault();
     fetch("http://localhost:3001/api/v1/user/login", {
@@ -33,7 +33,6 @@ function SignInPage() {
         return response.json();
       })
       .then((data) => {
-   
         if (rememberMe) {
           localStorage.setItem("token", data.body.token);
         } else {
@@ -43,6 +42,7 @@ function SignInPage() {
       })
       .catch((error) => {
         console.error("Erreur de connexion", error);
+        setErrorMessage("Erreur de connexion. Veuillez réessayer.");
       });
   };
 
@@ -81,6 +81,7 @@ function SignInPage() {
               <label htmlFor="remember-me">Remember me</label>
             </div>
             <button className="sign-in-button">Sign In</button>
+            {errorMessage && <p className="error">{errorMessage}</p>}
           </form>
         </section>
       </main>
