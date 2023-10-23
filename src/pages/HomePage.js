@@ -4,6 +4,7 @@ import moneyIcon from '../img/icon-money.png';
 import securitydIcon from '../img/icon-security.png';
 import Feature from '../components/Feature';
 
+
 function HomePage() {
   return (
     <main>
