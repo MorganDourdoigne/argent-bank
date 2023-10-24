@@ -1,24 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Account from '../components/Account';
 
-
 function UserProfilePage() {
-  const user = useSelector(state => state.user);
+  const token = useSelector(state => state.auth.token);
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`An error has occurred: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setData(data.body);
+    };
+
+    fetchData();
+  }, [token]); 
 
   return (
     <div>
-        <main className="main bg-dark">
+      <main className="main bg-dark">
         <div className="header">
-        <h1>Welcome back<br />{user ? user.name : ''}!</h1>
-          <button className="edit-button">Edit Name</button>
+          <h1>Bienvenue<br />{data ? `${data.firstName} ${data.lastName}` : ''}!</h1>
+          <button className="edit-button">Modifier le nom</button>
         </div>
-        <h2 className="sr-only">Accounts</h2>
+        <h2 className="sr-only">Comptes</h2>
         <Account />
         <Account />
         <Account />
       </main>
-         </div>
+    </div>
   );
 }
 
