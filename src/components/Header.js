@@ -6,6 +6,8 @@ import logoArgentBank from "../img/argentBankLogo.png";
 function Header() {
   // récupération du token du state Redux
   const token = useSelector((state) => state.auth.token);
+  // récupération des données de l'utilisateur du state Redux
+  const user = useSelector((state) => state.user.user);
   // récupération dispatch () pour dispatcher des actions
   const dispatch = useDispatch();
   //récupération navigate() pour naviguer vers d'autres routes
@@ -34,14 +36,16 @@ function Header() {
         </Link>
         <div>
           {token ? (
-            <Link
-              className="main-nav-item"
-              to="/sign-in"
-              onClick={handleSignOut}
-            >
-              <i className="fa fa-user-circle"></i>
-              Sign Out
-            </Link>
+            <>
+              <Link className="main-nav-item" to="/profile">
+                <i className="fa fa-user-circle"></i>
+                {user ? `${user.firstName} ${user.lastName}` : ''}
+              </Link>
+              <Link className="main-nav-item" to="/sign-in" onClick={handleSignOut}>
+                <i className="fa fa-sign-out"></i>
+                Sign Out
+              </Link>
+            </>
           ) : (
             <Link className="main-nav-item" to="/sign-in">
               <i className="fa fa-user-circle"></i>
