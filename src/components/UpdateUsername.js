@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-
 // () update le nom d'utilisateur en envoyant une requête PUT à l'API
 async function updateUserProfile(username, dispatch) {
   const token =
@@ -39,19 +38,22 @@ function UpdateUsernameForm() {
     // Appel API pour mettre à jour le nom d'utilisateur
     updateUserProfile(username, dispatch);
   };
-// formulaire update username
+  // formulaire update username
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        New userName :
+      <label className="formTitle">
+        New user name :
         <input
-        id="username"
+          id="username"
           type="text"
           value={username}
+          className="inputForm"
           onChange={(e) => setUsername(e.target.value)}
         />
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit" className="submitForm">
+        Submit
+      </button>
     </form>
   );
 }
