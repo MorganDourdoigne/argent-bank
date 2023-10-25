@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Account from "../components/Account";
+// import Account from "../components/Account";
 
 function UserProfilePage() {
   const dispatch = useDispatch();
@@ -45,9 +45,9 @@ function UserProfilePage() {
           <button className="edit-button">Edit Name</button>
         </div>
                 <h2 className="sr-only">Comptes</h2>
-        <Account />
+        {/* <Account />
           <Account />
-        <Account />
+        <Account /> */}
               </main>
     </div>
   );
