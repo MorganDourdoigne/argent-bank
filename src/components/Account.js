@@ -18,14 +18,13 @@ function Account({ title, amount, description }) {
       }
 
       const data = await response.json();
-      console.log(data);
       setData(data.body); // Utilisez les données du corps de la réponse
     };
 
     fetchData();
   }, []);
 
-  return (
+   return (
     <section className="account">
       <div className="account-content-wrapper">
         <h3 className="account-title">{data.title}</h3>

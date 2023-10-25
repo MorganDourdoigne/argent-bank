@@ -9,9 +9,19 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
 
+
+// Récupération du token depuis le localStorage et sessionstorage
+const persistedState = {
+  auth: {
+    token: localStorage.getItem('token') || sessionStorage.getItem('token'),
+  },
+};
+
+
 // Configuration du store Redux
 const store = configureStore({
   reducer: rootReducer,
+  preloadedState: persistedState,
   devTools: true,
 });
 

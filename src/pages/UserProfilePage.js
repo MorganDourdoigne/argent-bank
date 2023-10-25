@@ -44,11 +44,11 @@ function UserProfilePage() {
           </h1>
           <button className="edit-button">Edit Name</button>
         </div>
-        <h2 className="sr-only">Comptes</h2>
+                <h2 className="sr-only">Comptes</h2>
         <Account />
+          <Account />
         <Account />
-        <Account />
-      </main>
+              </main>
     </div>
   );
 }
