@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import Account from "../components/Account";
+import UpdateUsernameForm from '../components/UpdateUsername';
 
 function UserProfilePage() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.user.user);
   const [data, setData] = useState(user);
+  const [isEditing, setIsEditing] = useState(false); 
+
+
+  // met à jour l'état local lorsque le nom d'utilisateur dans le state Redux change
+  useEffect(() => {
+    setData(user); 
+  }, [user]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,15 +47,18 @@ function UserProfilePage() {
           <h1>
             Welcome back
             <br />
-            {data ? `${data.firstName} ${data.lastName}` : ""}!
+            {data ? `${data.userName}` : ""} !
           </h1>
-          <button className="edit-button">Edit Name</button>
+          <button className="edit-button" onClick={() => setIsEditing(!isEditing)}>
+            {isEditing ? 'Cancel' : 'Edit Name'}
+          </button>
         </div>
-                <h2 className="sr-only">Comptes</h2>
-                {/* {data.accounts.map((account) => (
+        {isEditing && <UpdateUsernameForm />}
+        <h2 className="sr-only">Comptes</h2>
+        {/* {data.accounts.map((account) => (
           <Account key={account.id} account={account} />
         ))} */}
-              </main>
+      </main>
     </div>
   );
 }

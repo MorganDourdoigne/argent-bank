@@ -39,7 +39,7 @@ function Header() {
             <>
               <Link className="main-nav-item" to="/profile">
                 <i className="fa fa-user-circle"></i>
-                {user ? `${user.firstName} ${user.lastName}` : ''}
+                {user ? `${user.userName}` : ''}
               </Link>
               <Link className="main-nav-item" to="/sign-in" onClick={handleSignOut}>
                 <i className="fa fa-sign-out"></i>
