@@ -24,19 +24,22 @@ async function updateUserProfile(username, dispatch) {
 
     // Mise à jour du state Redux
     dispatch({ type: "UPDATE_USERNAME", payload: data.body.userName });
-  } catch (error) {
+      } catch (error) {
     console.error("Erreur update username", error);
   }
 }
 
-function UpdateUsernameForm() {
+function UpdateUsernameForm({ setIsEditing }) {
   const [username, setUsername] = useState("");
   const dispatch = useDispatch();
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Appel API pour mettre à jour le nom d'utilisateur
     updateUserProfile(username, dispatch);
+    setIsEditing(false);
   };
   // formulaire update username
   return (
