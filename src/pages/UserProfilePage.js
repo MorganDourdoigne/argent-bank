@@ -45,9 +45,9 @@ function UserProfilePage() {
           <button className="edit-button">Edit Name</button>
         </div>
                 <h2 className="sr-only">Comptes</h2>
-        {/* <Account />
-          <Account />
-        <Account /> */}
+                {/* {data.accounts.map((account) => (
+          <Account key={account.id} account={account} />
+        ))} */}
               </main>
     </div>
   );
