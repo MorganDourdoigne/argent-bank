@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import React from "react";
-import logoArgentBank from "../img/argentBankLogo.png";
+import logoArgentBank from "../webp/argentBankLogo.webp";
 
 function Header() {
   // récupération du token du state Redux
