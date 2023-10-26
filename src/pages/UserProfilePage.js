@@ -46,7 +46,7 @@ function UserProfilePage() {
           <h1>
             Welcome back
             <br />
-            {data ? `${data.userName}` : ""} !
+            {data ? `${data.firstName} ${data.lastName}` : ''} !
           </h1>
           <button
             className="edit-button"
