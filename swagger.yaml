@@ -30,6 +30,33 @@ schemes:
           description: Internal Server Error
 
 
+# Endpoint pour récupérer toutes les transactions pour un mois donné
+/transactions/month/{month}:
+  get:
+    tags:
+      - Transaction Module
+    summary: Get all transactions for a specific month
+    description: API for retrieving all transactions for a specific month, grouped by account.
+    # Nécessite un token d'autorisation dans l'en-tête de la requête
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: month
+        description: The month for which to retrieve transactions (in the format YYYY-MM)
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Transactions retrieved successfully for the given month
+        schema:
+          $ref: '#/definitions/TransactionsResponse'
+      '400':
+        description: Invalid request
+      '500':
+        description: Internal Server Error
+
+
 
   # Endpoint pour récupérer une transaction spécifique
   /transactions/{id}/:
