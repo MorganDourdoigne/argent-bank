@@ -9,6 +9,8 @@ basePath: /api/v1
 schemes:
   - http
   paths:
+
+  
   # Endpoint pour récupérer toutes les transactions
   /transactions:
     get:
