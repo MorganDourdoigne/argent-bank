@@ -1,4 +1,5 @@
-// état du reducer initial = null
+/* Emplacement où l'état initial de votre reducer d'authentification est défini.
+ Le token est initialisé à null.*/
 const initialState = {
   token: null,
 };
@@ -12,9 +13,11 @@ function authReducer(state = initialState, action) {
     // si 'USER_LOGOUT',  le token se met à null
     case "USER_LOGOUT":
       return { ...state, token: null };
+    // Lorsque l'action 'USER_LOGOUT' est dispatchée, le token dans l'état de Redux est réinitialisé à null.
     default:
       return state;
   }
 }
 
+// Export du reducer d'authentification pour l'utiliser dans le store Redux.
 export default authReducer;
