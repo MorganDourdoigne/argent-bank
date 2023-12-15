@@ -28,11 +28,13 @@ schemes:
             $ref: '#/definitions/TransactionsResponse'
         '400':
           description: Invalid request
+        '401':
+          description: Authorization information is missing or invalid
         '500':
           description: Internal Server Error
 
 
-# Endpoint pour récupérer toutes les transactions pour un mois donné
+# 2- Endpoint pour récupérer toutes les transactions pour un mois donné
 /transactions/month/{month}:
   get:
     tags:
@@ -55,12 +57,15 @@ schemes:
           $ref: '#/definitions/TransactionsResponse'
       '400':
         description: Invalid request
+      '401':
+          description: Authorization information is missing or invalid
       '500':
         description: Internal Server Error
 
 
 
-  # Endpoint pour récupérer une transaction spécifique
+  # 3- Endpoint pour récupérer une transaction spécifique
+  # GET
   /transactions/{id}/:
     get:
       tags:
@@ -81,6 +86,8 @@ schemes:
           description: Transaction retrieved successfully
           schema:
             $ref: '#/definitions/TransactionResponse'
+        '401':
+          description: Authorization information is missing or invalid
         '400':
           description: Invalid request
         '404':
@@ -89,6 +96,7 @@ schemes:
           description: Internal Server Error
 
     # Endpoint pour mettre à jour une transaction spécifique
+    # PUT
     put:
       tags:
         - Transaction Module
@@ -116,6 +124,8 @@ schemes:
           description: Transaction updated successfully
         '400':
           description: Invalid request
+        '401':
+          description: Authorization information is missing or invalid
         '404':
           description: Transaction not found
         '500':
@@ -156,7 +166,7 @@ schemes:
             # La nouvelle date de la transaction
        date :
          type : string 
-         format:date-time 
+         format: date-time 
          description : The new date of the transaction.
          
            # La structure d'une transaction

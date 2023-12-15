@@ -1,20 +1,27 @@
+// Importation des hooks nécessaires de React et Redux
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
+// Importation des composants nécessaires
 import UpdateUsername from "../components/UpdateUsernameForm";
 import Account from "../components/Account";
 
 function UserProfilePage() {
+  // Récupération de la fonction dispatch de Redux, du token d'authentification et des informations de l'utilisateur
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.user.user);
+  
+  // Initialisation des variables d'état locales
   const [data, setData] = useState(user);
   const [isEditing, setIsEditing] = useState(false);
 
-  // met à jour l'état local lorsque le nom d'utilisateur dans le state Redux change
+  // Mise à jour de l'état local lorsque le nom d'utilisateur dans le state Redux change
   useEffect(() => {
     setData(user);
   }, [user]);
 
+  // Envoi d'une requête POST à l'API pour récupérer le profil de l'utilisateur lors du chargement du composant
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
@@ -33,6 +40,7 @@ function UserProfilePage() {
       }
 
       const data = await response.json();
+      // Mise à jour du state Redux avec les informations de l'utilisateur
       dispatch({ type: "USER_PROFILE_LOADED", payload: data.body });
       setData(data.body);
     };
@@ -40,6 +48,7 @@ function UserProfilePage() {
     fetchData();
   }, [token, dispatch]);
 
+  // Rendu du composant : affichage des informations de l'utilisateur et des comptes et un formulaire pour mettre à jour le nom d'utilisateur
   return (
     <div>
       <main className="main bg-dark">
@@ -78,4 +87,5 @@ function UserProfilePage() {
   );
 }
 
+// Exportation du composant UserProfilePage pour être utilisé ailleurs dans l'application
 export default UserProfilePage;
