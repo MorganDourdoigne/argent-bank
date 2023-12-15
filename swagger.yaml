@@ -8,17 +8,18 @@ host: localhost:3001
 basePath: /api/v1
 schemes:
   - http
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
 paths:
-
-  
-  # Endpoint pour récupérer toutes les transactions
   /transactions:
     get:
       tags:
         - Transaction Module
       summary: Get all transactions
       description: API for retrieving all transactions, grouped by account.
-      # Nécessite un token d'autorisation dans l'en-tête de la requête
       security:
         - Bearer: []
       responses:
@@ -32,47 +33,37 @@ paths:
           description: Authorization information is missing or invalid
         '500':
           description: Internal Server Error
-
-
-# 2- Endpoint pour récupérer toutes les transactions pour un mois donné
-/transactions/month/{month}:
-  get:
-    tags:
-      - Transaction Module
-    summary: Get all transactions for a specific month
-    description: API for retrieving all transactions for a specific month, grouped by account.
-    # Nécessite un token d'autorisation dans l'en-tête de la requête
-    security:
-      - Bearer: []
-    parameters:
-      - in: path
-        name: month
-        description: The month for which to retrieve transactions (in the format YYYY-MM)
-        required: true
-        type: string
-    responses:
-      '200':
-        description: Transactions retrieved successfully for the given month
-        schema:
-          $ref: '#/definitions/TransactionsResponse'
-      '400':
-        description: Invalid request
-      '401':
+  /transactions/month/{month}:
+    get:
+      tags:
+        - Transaction Module
+      summary: Get all transactions for a specific month
+      description: API for retrieving all transactions for a specific month, grouped by account.
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: month
+          description: The month for which to retrieve transactions (in the format YYYY-MM)
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Transactions retrieved successfully for the given month
+          schema:
+            $ref: '#/definitions/TransactionsResponse'
+        '400':
+          description: Invalid request
+        '401':
           description: Authorization information is missing or invalid
-      '500':
-        description: Internal Server Error
-
-
-
-  # 3- Endpoint pour récupérer une transaction spécifique
-  # GET
+        '500':
+          description: Internal Server Error
   /transactions/{id}/:
     get:
       tags:
         - Transaction Module
       summary: Get a specific transaction
       description: API for retrieving the details of a specific transaction.
-      # Nécessite un token d'autorisation et l'ID de la transaction en tant que paramètre de chemin
       security:
         - Bearer: []
       parameters:
@@ -94,17 +85,12 @@ paths:
           description: Transaction not found
         '500':
           description: Internal Server Error
-
-    # Endpoint pour mettre à jour une transaction spécifique
-    # PUT
     put:
       tags:
         - Transaction Module
       summary: Update a specific transaction
       description: API for updating certain information of a specific transaction, such as the amount or date.
        The transaction itself cannot be added or deleted.
-      # Nécessite un token d'autorisation, l'ID de la transaction en tant que paramètre de chemin, 
-      # et les nouvelles informations de la transaction en tant que corps de la requête.
       security:
         - Bearer: []
       parameters:
@@ -130,59 +116,42 @@ paths:
           description: Transaction not found
         '500':
           description: Internal Server Error
-
-
-# Section définitions
-      definitions:
-      # La réponse de l'API quand on demande toutes les transactions
+definitions:
   TransactionsResponse:
     type: object 
     properties:
-     # Un tableau de transactions
       transactions:
         type: array
-         # Chaque élément du tableau est une Transaction
         items:
           $ref: '#/definitions/Transaction'
-            # La réponse de l'API quand on demande une transaction spécifique
   TransactionResponse:
     type: object 
     properties:
-       # La transaction demandée
       transaction:
         $ref: '#/definitions/Transaction'
-        # Les informations à fournir à l'API pour mettre à jour une transaction
   TransactionUpdate:
     type: object 
     properties:
-       # Le nouveau titre de la transaction
       title:
         type : string 
         description : The new title of the transaction.
-         # Le nouveau montant de la transaction
       amount :
          type : number 
          description : The new amount of the transaction.
-            # La nouvelle date de la transaction
-       date :
+      date :
          type : string 
          format: date-time 
          description : The new date of the transaction.
-         
-           # La structure d'une transaction
   Transaction :
     type : object 
     properties :
-       # Le titre de la transaction
        title :
          type : string 
          description : The title of the transaction.
-          # Le montant de la transaction
        amount :
          type : number 
          description : The amount of the transaction.
-         # La date de la transaction
        date :
          type : string 
-         format:date-time 
+         format: date-time 
          description : The date of the transaction.
